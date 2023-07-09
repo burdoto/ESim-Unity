@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-public abstract class EComponent : MonoBehaviour
+public abstract class EComponent : MonoBehaviour, IEComponent
 {
     [CanBeNull] public Wire Input;
     [CanBeNull] public Wire Output;
@@ -9,5 +9,5 @@ public abstract class EComponent : MonoBehaviour
     
     public abstract Types ComponentType { get; }
     
-    public enum Types { Switch, Consumer, Source }
+    public enum Types { Conductor, Switch, Consumer, Source }
 }
