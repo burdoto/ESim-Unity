@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targets:
-  - {fileID: 924892025}
+  - {fileID: 74551538}
 --- !u!1 &651513350
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Input: {fileID: 1795166022}
-  Output: {fileID: 0}
+  Output: {fileID: 1466783947}
   State: 0
   Type: 0
 --- !u!33 &651513353
@@ -1325,6 +1325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 1541963538}
   Static: {fileID: 1213903020}
+  Tick: 0
+  Playing: 0
 --- !u!1 &1066947895
 GameObject:
   m_ObjectHideFlags: 0

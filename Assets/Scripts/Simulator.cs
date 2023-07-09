@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Simulator : MonoBehaviour
@@ -14,7 +15,10 @@ public class Simulator : MonoBehaviour
 
     public bool Playing;
 
-    void Play() {}
+    void Play()
+    {
+        if (UI.GetComponentByName<>(""))
+    }
     
     void Start() {}
 
