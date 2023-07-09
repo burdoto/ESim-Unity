@@ -6,7 +6,7 @@ public class Simulator : MonoBehaviour
 {
     public GameObject UI;
     public GameObject Static;
-    public GameObject Template;
+    public GameObject Template => gameObject.GetComponentInParent<GameObject>();
 
     void Play() {}
     
