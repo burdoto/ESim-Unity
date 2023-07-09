@@ -10,6 +10,7 @@ namespace EComp
         public short PhaseShiftAngle;
         public short MaxAmperage = 500;
 
+        public override Types ComponentType => Types.Source;
         public Wire Wire => gameObject.GetComponent<Wire>();
         
         private void Awake()

@@ -3,8 +3,10 @@
     public class Switch : EComponent
     {
         public Types Type;
+
+        public override EComponent.Types ComponentType => EComponent.Types.Switch;
     
         public enum States : byte { Normal, Toggled }
-        public enum Types : byte { NormallyOpen, NormallyClosed, TwoWay, Cross }
+        public new enum Types : byte { NormallyOpen, NormallyClosed, TwoWay, Cross }
     }
 }
