@@ -1,9 +1,38 @@
-using System.Collections;
+#nullable enable
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using EComp;
 
-public class Wire : MonoBehaviour, IEComponent
+public class Wire : IEComponent
 {
-    public IEnumerable<SolderPoint> Solders => gameObject.GetComponentsInChildren<SolderPoint>();
-    public EComponent.Types ComponentType => EComponent.Types.Conductor;
+    public List<ContactPoint> Solders = new();
+    public Potential? Potential;
+    
+    public override Types ComponentType => Types.Conductor;
+
+    private void Awake()
+    {
+        Potential = GetComponent<Potential>();
+    }
+
+    public override void ComputeValues()
+    {
+        if (!Potential.IsNull())
+        {
+            SimState.From(Potential!);
+            goto end;
+        }
+
+        foreach (var contactPoint in Solders)
+            if (contactPoint.ContactType == ContactPoint.ContactTypes.Output)
+            {
+                var parent = contactPoint.transform.parent.GetComponent<IEComponent>();
+                parent.ComputeVoltage();
+                SimState = parent.SimState;
+                goto end;
+            }
+
+        end:
+        base.ComputeValues();
+    }
 }

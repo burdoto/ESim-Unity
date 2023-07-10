@@ -8,8 +8,7 @@ public class Simulator : MonoBehaviour
 {
     public GameObject UI;
     public GameObject Static;
-    public long Tick;
-    public GameObject Template => gameObject.GetComponentInParent<GameObject>();
+    public GameObject Template => transform.parent.gameObject;
     public IEnumerable<IEComponent> EComponents => Static.GetComponentsInChildren<IEComponent>()
         .Concat(Template.GetComponentsInChildren<IEComponent>());
 
