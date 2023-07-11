@@ -220,7 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 1795166022}
   ContactType: 0
 --- !u!1 &74551534
 GameObject:
@@ -488,7 +489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 1466783947}
   ContactType: 0
 --- !u!1 &519420028
 GameObject:
@@ -587,7 +589,7 @@ GameObject:
   - component: {fileID: 548423491}
   - component: {fileID: 548423490}
   m_Layer: 0
-  m_Name: SolderPoint2
+  m_Name: ContactPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,13 +602,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548423488}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.55, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: -8.5, y: -4.3, z: 0}
+  m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1466783946}
-  m_RootOrder: 0
+  m_Father: {fileID: 947556881}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &548423490
 MeshRenderer:
@@ -671,7 +673,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 1466783947}
+  - {fileID: 74551538}
   ContactType: 0
 --- !u!1 &651513350
 GameObject:
@@ -707,7 +711,7 @@ Transform:
   - {fileID: 1633586135}
   - {fileID: 494615040}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &651513353
 MeshFilter:
@@ -814,7 +818,7 @@ Transform:
   - {fileID: 61374459}
   - {fileID: 1326421814}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &680768411
 MonoBehaviour:
@@ -932,7 +936,7 @@ Transform:
   - {fileID: 1632152309}
   - {fileID: 1380792760}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &822804722
 MonoBehaviour:
@@ -1135,12 +1139,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883614346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: -8.5, y: 4.5, z: 0}
+  m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1736872009}
+  m_Father: {fileID: 947556881}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &883614348
@@ -1156,7 +1160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 924892025}
+  - {fileID: 1066947899}
   ContactType: 0
 --- !u!23 &883614349
 MeshRenderer:
@@ -1375,7 +1381,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Solders: []
+  Solders:
+  - {fileID: 883614348}
   Potential: {fileID: 0}
 --- !u!1 &945863924
 GameObject:
@@ -1408,7 +1415,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Solders: []
+  Solders:
+  - {fileID: 1380792763}
+  - {fileID: 1196956341}
   Potential: {fileID: 0}
 --- !u!120 &945863926
 LineRenderer:
@@ -1522,7 +1531,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &947556880
 GameObject:
@@ -1553,6 +1562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 883614347}
   - {fileID: 1736872009}
   - {fileID: 822804721}
   - {fileID: 945863927}
@@ -1560,6 +1570,7 @@ Transform:
   - {fileID: 1795166024}
   - {fileID: 651513351}
   - {fileID: 1466783946}
+  - {fileID: 548423489}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1981,7 +1992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 945863925}
   ContactType: 0
 --- !u!1 &1213903020
 GameObject:
@@ -2253,7 +2265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 945863925}
   ContactType: 0
 --- !u!1 &1402906438
 GameObject:
@@ -2453,10 +2466,9 @@ Transform:
   m_LocalPosition: {x: -8.5, y: -2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 548423489}
+  m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!114 &1466783947
 MonoBehaviour:
@@ -2471,7 +2483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Solders: []
+  Solders:
+  - {fileID: 494615043}
+  - {fileID: 548423492}
   Potential: {fileID: 0}
 --- !u!120 &1466783948
 LineRenderer:
@@ -3261,7 +3275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 1736872011}
   ContactType: 0
 --- !u!1 &1633586134
 GameObject:
@@ -3360,7 +3375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Targets: []
+  Targets:
+  - {fileID: 1795166022}
   ContactType: 0
 --- !u!1 &1736872008
 GameObject:
@@ -3391,10 +3407,9 @@ Transform:
   m_LocalPosition: {x: -8.5, y: 4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 883614347}
+  m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!114 &1736872011
 MonoBehaviour:
@@ -3409,7 +3424,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Solders: []
+  Solders:
+  - {fileID: 883614348}
+  - {fileID: 1632152312}
   Potential: {fileID: 0}
 --- !u!120 &1736872012
 LineRenderer:
@@ -3541,7 +3558,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TickState: 0
-  Solders: []
+  Solders:
+  - {fileID: 61374462}
+  - {fileID: 1633586138}
   Potential: {fileID: 0}
 --- !u!120 &1795166023
 LineRenderer:
@@ -3655,7 +3674,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &1929311515
 GameObject:
