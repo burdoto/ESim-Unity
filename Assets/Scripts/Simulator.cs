@@ -16,7 +16,7 @@ public class Simulator : MonoBehaviour
 
     void Play()
     {
-        if (UI.GetComponentByName<>(""))
+        //if (UI.GetComponentByName<>(""))
     }
     
     void Start() {}
