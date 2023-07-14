@@ -30,7 +30,7 @@ namespace EComp
             if (input.IsNull()) goto end;
 
             input!.ComputeVoltage();
-            SimState = input.SimState;
+            PotentialInfo = input.PotentialInfo;
 
             end:
             base.ComputeValues();

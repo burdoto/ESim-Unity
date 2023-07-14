@@ -219,9 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 1795166022}
   ContactType: 0
 --- !u!1 &74551534
 GameObject:
@@ -368,6 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef590fb14f8496facbf879fd4a15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 74551538}
   Output: {fileID: 74551538}
@@ -377,6 +377,7 @@ MonoBehaviour:
   Voltage: 230
   MaxAmperage: 500
   PhaseShiftAngle: 0
+  WireMesh: {fileID: 0}
 --- !u!114 &74551538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,9 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders: []
-  Potential: {fileID: 0}
 --- !u!1 &494615039
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,9 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 1466783947}
   ContactType: 0
 --- !u!1 &519420028
 GameObject:
@@ -608,7 +607,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &548423490
 MeshRenderer:
@@ -672,10 +671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 1466783947}
-  - {fileID: 74551538}
   ContactType: 0
 --- !u!1 &651513350
 GameObject:
@@ -711,7 +708,7 @@ Transform:
   - {fileID: 1633586135}
   - {fileID: 494615040}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &651513353
 MeshFilter:
@@ -775,6 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b2ddc92fc44bea31bb7a0701461f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 1795166022}
   Output: {fileID: 1466783947}
@@ -818,7 +816,7 @@ Transform:
   - {fileID: 61374459}
   - {fileID: 1326421814}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &680768411
 MonoBehaviour:
@@ -832,6 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17f252075054e52adad6e7b59ca0731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 945863925}
   Output: {fileID: 1795166022}
@@ -936,7 +935,7 @@ Transform:
   - {fileID: 1632152309}
   - {fileID: 1380792760}
   m_Father: {fileID: 947556881}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &822804722
 MonoBehaviour:
@@ -950,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd11d5315434a4898cf565ac65e10e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 1736872011}
   Output: {fileID: 945863925}
@@ -1145,7 +1145,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &883614348
 MonoBehaviour:
@@ -1159,10 +1159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 924892025}
-  - {fileID: 1066947899}
   ContactType: 0
 --- !u!23 &883614349
 MeshRenderer:
@@ -1359,6 +1357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef590fb14f8496facbf879fd4a15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 924892025}
   Output: {fileID: 924892025}
@@ -1368,6 +1367,7 @@ MonoBehaviour:
   Voltage: 230
   MaxAmperage: 500
   PhaseShiftAngle: 0
+  WireMesh: {fileID: 0}
 --- !u!114 &924892025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1380,10 +1380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders:
-  - {fileID: 883614348}
-  Potential: {fileID: 0}
 --- !u!1 &945863924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,11 +1412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders:
-  - {fileID: 1380792763}
-  - {fileID: 1196956341}
-  Potential: {fileID: 0}
 --- !u!120 &945863926
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1531,7 +1526,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &947556880
 GameObject:
@@ -1562,6 +1557,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1213903021}
   - {fileID: 883614347}
   - {fileID: 1736872009}
   - {fileID: 822804721}
@@ -1572,7 +1568,7 @@ Transform:
   - {fileID: 1466783946}
   - {fileID: 548423489}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &947556882
 MonoBehaviour:
@@ -1734,6 +1730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef590fb14f8496facbf879fd4a15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 1066947899}
   Output: {fileID: 1066947899}
@@ -1743,6 +1740,7 @@ MonoBehaviour:
   Voltage: 230
   MaxAmperage: 500
   PhaseShiftAngle: 120
+  WireMesh: {fileID: 0}
 --- !u!114 &1066947899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,9 +1753,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders: []
-  Potential: {fileID: 0}
 --- !u!1 &1187528093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,9 +1988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 945863925}
   ContactType: 0
 --- !u!1 &1213903020
 GameObject:
@@ -2005,7 +2001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213903021}
   m_Layer: 0
-  m_Name: Static
+  m_Name: Inputs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2018,7 +2014,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213903020}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.41172636, y: -0.011789434, z: -0.03942284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2028,8 +2024,8 @@ Transform:
   - {fileID: 1402906439}
   - {fileID: 74551535}
   - {fileID: 1962904057}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 947556881}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246126765
 GameObject:
@@ -2165,8 +2161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets: []
   ContactType: 0
 --- !u!1 &1380792759
 GameObject:
@@ -2264,9 +2260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 945863925}
   ContactType: 0
 --- !u!1 &1402906438
 GameObject:
@@ -2413,6 +2408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef590fb14f8496facbf879fd4a15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 1402906442}
   Output: {fileID: 1402906442}
@@ -2422,6 +2418,7 @@ MonoBehaviour:
   Voltage: 230
   MaxAmperage: 500
   PhaseShiftAngle: 240
+  WireMesh: {fileID: 0}
 --- !u!114 &1402906442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2434,9 +2431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders: []
-  Potential: {fileID: 0}
 --- !u!1 &1466783945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,7 +2464,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!114 &1466783947
 MonoBehaviour:
@@ -2482,11 +2478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders:
-  - {fileID: 494615043}
-  - {fileID: 548423492}
-  Potential: {fileID: 0}
 --- !u!120 &1466783948
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3274,9 +3267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 1736872011}
   ContactType: 0
 --- !u!1 &1633586134
 GameObject:
@@ -3374,9 +3366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2329e9cb5949bca02d251afdba1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Targets:
-  - {fileID: 1795166022}
   ContactType: 0
 --- !u!1 &1736872008
 GameObject:
@@ -3409,7 +3400,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!114 &1736872011
 MonoBehaviour:
@@ -3423,11 +3414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders:
-  - {fileID: 883614348}
-  - {fileID: 1632152312}
-  Potential: {fileID: 0}
 --- !u!120 &1736872012
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3557,11 +3545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders:
-  - {fileID: 61374462}
-  - {fileID: 1633586138}
-  Potential: {fileID: 0}
 --- !u!120 &1795166023
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3674,7 +3659,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 947556881}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &1929311515
 GameObject:
@@ -3742,7 +3727,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1962904056
 GameObject:
@@ -3889,6 +3874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef590fb14f8496facbf879fd4a15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
   Input: {fileID: 1962904060}
   Output: {fileID: 1962904060}
@@ -3898,6 +3884,7 @@ MonoBehaviour:
   Voltage: 230
   MaxAmperage: 500
   PhaseShiftAngle: 0
+  WireMesh: {fileID: 0}
 --- !u!114 &1962904060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3910,6 +3897,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed45c19439e04c5eae7e434ae1d5e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
   TickState: 0
-  Solders: []
-  Potential: {fileID: 0}

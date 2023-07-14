@@ -25,7 +25,7 @@ namespace EComp
             
             // get input voltage
             var volts = input!.ComputeVoltage();
-            SimState.Push(volts, Wattage);
+            PotentialInfo.Push(Wattage);
             
             end:
             base.ComputeValues();
@@ -34,7 +34,7 @@ namespace EComp
         protected override void ComputeReaction()
         {
             // break lamp if U > U_max
-            if (SimState.Volts > Voltage * 1.1)
+            if (PotentialInfo.Volts > Voltage * 1.1)
                 State = StateBroken;
             
             base.ComputeReaction();

@@ -9,9 +9,9 @@
 
         protected override void ComputeReaction()
         {
-            if (SimState.Amps > RatedAmperage)
+            if (PotentialInfo.Amps > RatedAmperage)
                 State = StateBroken;
-            else if (SimState.Amps > TripAmperage)
+            else if (PotentialInfo.Amps > TripAmperage)
                 State = (byte)States.Tripped;
 
             base.ComputeReaction();

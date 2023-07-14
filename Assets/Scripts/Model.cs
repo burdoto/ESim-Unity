@@ -3,15 +3,22 @@ using System;
 using EComp;
 using JetBrains.Annotations;
 using UnityEngine;
+using Wires;
 
-public sealed class SimState
+public interface IConductive { }
+
+public sealed class PotentialInfo
 {
+    public PotentialInfo? Parent;
     public bool Neutral;
     public bool Ground;
     public double Volts;
     public double Watts;
     public double Amps;
     public double Phi;
+    public bool IsDefault => !Neutral && !Ground && Volts == 0 && Watts == 0 && Amps == 0 && Phi == 0;
+
+    public PotentialInfo Next() => new() { Parent = this };
 
     public void From(Potential potential)
     {
@@ -21,20 +28,41 @@ public sealed class SimState
         Phi = potential.PhaseShiftAngle;
     }
     
-    public void Push(double volts, double watts)
+    public void Push(double watts)
     {
         // I = P / U
-        Amps = (Watts = watts) / (Volts = volts);
+        Amps = (Watts = watts) / Volts;
+    }
+
+    public void Attach(PotentialInfo other)
+    {
+        Neutral = other.Neutral;
+        Ground = other.Ground;
+        if (IsDefault)
+        {
+            Volts = other.Volts;
+            Watts = other.Watts;
+            Amps = other.Amps;
+            Phi = other.Phi;
+            return;
+        }
+        throw new NotImplementedException();
     }
 }
 
-public abstract class IEComponent : MonoBehaviour
+public abstract class AEComponent : MonoBehaviour
 {
     public const byte StateBroken = 0xFF;
+    public Simulator Simulator;
     public TickStates TickState;
-    public SimState SimState = new();
+    public PotentialInfo PotentialInfo = new();
 
     public abstract Types ComponentType { get; }
+
+    private void Awake()
+    {
+        Simulator = GetComponentInParent<Simulator>(true);
+    }
 
     private void FixedUpdate()
     {
@@ -62,12 +90,12 @@ public abstract class IEComponent : MonoBehaviour
             InitializeTick();
         if (TickState < TickStates.Values)
             ComputeValues();
-        return SimState.Volts;
+        return PotentialInfo.Volts;
     }
 
     protected void InitializeTick()
     {
-        SimState = new SimState();
+        PotentialInfo = new PotentialInfo();
         TickState = TickStates.Init;
     }
 
@@ -104,7 +132,7 @@ public abstract class IEComponent : MonoBehaviour
     public enum Types { Conductor, Switch, Consumer, Source }
 }
 
-public abstract class EComponent : IEComponent
+public abstract class EComponent : AEComponent
 {
     public Wire? Input;
     public Wire? Output;
