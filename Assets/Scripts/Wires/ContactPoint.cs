@@ -1,14 +1,18 @@
+#nullable enable
 namespace Wires
 {
-    public class ContactPoint : AEComponent, IConductive
+    public class ContactPoint : Conductive
     {
+        public EComponent? Device;
         public ContactTypes ContactType;
-
         public override Types ComponentType => Types.Conductor;
-    
-        void Start() {}
 
-        void Update() {}
+        protected override void Awake()
+        {
+            base.Awake();
+            if (Device != null) 
+                Device = transform.parent.GetComponent<EComponent>();
+        }
     
         public enum ContactTypes { Joint = default, Input, Output }
     }

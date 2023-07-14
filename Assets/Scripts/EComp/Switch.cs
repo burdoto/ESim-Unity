@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace EComp
 {
     public class Switch : EComponent
     {
-        public Types Type;
+        public Types SwitchType;
         public bool Resting;
 
         public override EComponent.Types ComponentType => EComponent.Types.Switch;
@@ -22,21 +23,18 @@ namespace EComp
                 State = (byte)States.Normal;
         }
 
-        public override void ComputeValues()
+        protected override PotentialInfo ComputeOutputPotential() => (SwitchType, (States)State) switch
         {
-            if (State == (byte)States.Normal) goto end;
-            
-            var input = Input;
-            if (input.IsNull()) goto end;
-
-            input!.ComputeVoltage();
-            PotentialInfo = input.PotentialInfo;
-
-            end:
-            base.ComputeValues();
-        }
+            (Types.NormallyOpen, States.Toggled)
+                or (Types.NormallyClosed, States.Normal)
+                or (Types.TwoWay, States.Toggled)
+                => GetInputPotential(),
+            (Types.TwoWay, States.Normal)
+                => throw new NotImplementedException("Two-Way switch does not work right"),
+            _ => PotentialInfo.Zero
+        };
 
         public enum States : byte { Normal = default, Toggled }
-        public new enum Types : byte { NormallyOpen, NormallyClosed, TwoWay, Cross }
+        public new enum Types : byte { NormallyOpen, NormallyClosed, TwoWay }
     }
 }

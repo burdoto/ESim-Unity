@@ -3,138 +3,87 @@ using System;
 using EComp;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Wires;
+using ContactPoint = Wires.ContactPoint;
 
-public interface IConductive { }
-
+[Serializable]
 public sealed class PotentialInfo
 {
+    public static readonly PotentialInfo Zero = new();
     public PotentialInfo? Parent;
     public bool Neutral;
     public bool Ground;
     public double Volts;
     public double Watts;
     public double Amps;
-    public double Phi;
-    public bool IsDefault => !Neutral && !Ground && Volts == 0 && Watts == 0 && Amps == 0 && Phi == 0;
+    [FormerlySerializedAs("PhaseShift")] [FormerlySerializedAs("Phi")]
+    public double PhaseShiftAngle;
+    public bool IsZero => !Neutral && !Ground && Volts == 0 && Watts == 0 && Amps == 0 && PhaseShiftAngle == 0;
 
     public PotentialInfo Next() => new() { Parent = this };
 
-    public void From(Potential potential)
+    public static implicit operator PotentialInfo(Potential potential) => new()
     {
-        Neutral = potential.Neutral;
-        Ground = potential.Ground;
-        Volts = potential.Voltage;
-        Phi = potential.PhaseShiftAngle;
-    }
+        Neutral = potential.Neutral,
+        Ground = potential.Ground,
+        Volts = potential.Voltage,
+        PhaseShiftAngle = potential.PhaseShiftAngle
+    };
     
-    public void Push(double watts)
+    public static double operator %(PotentialInfo input, PotentialInfo output)
+    {
+        throw new NotImplementedException();
+    }
+
+    public PotentialInfo Push(double watts)
     {
         // I = P / U
         Amps = (Watts = watts) / Volts;
+        return this;
     }
 
-    public void Attach(PotentialInfo other)
+    public PotentialInfo Attach(PotentialInfo other)
     {
         Neutral = other.Neutral;
         Ground = other.Ground;
-        if (IsDefault)
+        if (IsZero)
         {
             Volts = other.Volts;
             Watts = other.Watts;
             Amps = other.Amps;
-            Phi = other.Phi;
-            return;
+            PhaseShiftAngle = other.PhaseShiftAngle;
+            return this;
         }
         throw new NotImplementedException();
     }
 }
 
-public abstract class AEComponent : MonoBehaviour
+public abstract class Conductive : MonoBehaviour
 {
+    public const byte StateNormal = 0x00;
+    public const byte StateInsufficient = 0xFE;
     public const byte StateBroken = 0xFF;
-    public Simulator Simulator;
-    public TickStates TickState;
-    public PotentialInfo PotentialInfo = new();
+    public Simulator Simulator = null!;
 
     public abstract Types ComponentType { get; }
 
-    private void Awake()
-    {
-        Simulator = GetComponentInParent<Simulator>(true);
-    }
+    protected virtual void Awake() => Simulator = GetComponentInParent<Simulator>(true);
 
-    private void FixedUpdate()
-    {
-        InitializeTick();
-        if (TickState == TickStates.Init)
-            ComputeValues();
-        else if (TickState < TickStates.Values)
-            Debug.unityLogger.LogError("IEComponent.FixedUpdate()",
-                "Could not ComputeValues(); TickState was " + TickState);
-        if (TickState == TickStates.Values)
-            ComputeReaction();
-        else if (TickState < TickStates.Reaction)
-            Debug.unityLogger.LogError("IEComponent.FixedUpdate()",
-                "Could not ComputeReaction(); TickState was " + TickState);
-        if (TickState == TickStates.Reaction)
-            ComputeOutput();
-        else if (TickState < TickStates.Output)
-            Debug.unityLogger.LogError("IEComponent.FixedUpdate()",
-                "Could not ComputeOutput(); TickState was " + TickState);
-    }
-    
-    public double ComputeVoltage()
-    {
-        if (TickState < TickStates.Init)
-            InitializeTick();
-        if (TickState < TickStates.Values)
-            ComputeValues();
-        return PotentialInfo.Volts;
-    }
-
-    protected void InitializeTick()
-    {
-        PotentialInfo = new PotentialInfo();
-        TickState = TickStates.Init;
-    }
-
-    public virtual void ComputeValues()
-    {
-        // this call finalizes initial computations
-        // we should collect all Current from Voltage and Wattage here
-        TickState = TickStates.Values;
-    }
-    
-    protected virtual void ComputeReaction()
-    {
-        // this call finalizes Current computations
-        // if a fuse is installed and I_max < I, it should be tripped in this method
-        TickState = TickStates.Reaction;
-    }
-    
-    protected virtual void ComputeOutput()
-    {
-        // this call finalizes output computations
-        // if this is a Lamp and no fuse tripped, it should light up
-        TickState = TickStates.Output;
-    }
-
-    public enum TickStates
-    {
-        None = default,
-        Init,     // After InitTick()
-        Values,   // After ComputeCurrent()
-        Reaction, // After ComputeReaction()
-        Output    // After ComputeOutput()
-    }
-    
     public enum Types { Conductor, Switch, Consumer, Source }
 }
 
-public abstract class EComponent : AEComponent
+public abstract class EComponent : Conductive
 {
-    public Wire? Input;
-    public Wire? Output;
+    public ContactPoint? Input;
+    public ContactPoint? Output;
     public byte State;
+    public PotentialInfo? InputPotential;
+    public PotentialInfo? OutputPotential;
+    
+    protected virtual void LateUpdate() => InputPotential = OutputPotential = null;
+
+    public PotentialInfo GetInputPotential() => InputPotential ??= ((WireMesh?)Input)?.FindPotential() ?? PotentialInfo.Zero;
+    public PotentialInfo GetOutputPotential() => OutputPotential ??= ComputeOutputPotential();
+    protected abstract PotentialInfo ComputeOutputPotential();
 }

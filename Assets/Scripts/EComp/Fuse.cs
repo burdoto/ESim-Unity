@@ -1,4 +1,6 @@
-﻿namespace EComp
+﻿using System;
+
+namespace EComp
 {
     public class Fuse : EComponent
     {
@@ -7,14 +9,18 @@
 
         public override Types ComponentType => Types.Switch;
 
-        protected override void ComputeReaction()
+        protected override PotentialInfo ComputeOutputPotential()
         {
-            if (PotentialInfo.Amps > RatedAmperage)
+            var output = GetOutputPotential();
+            if (output.Amps > RatedAmperage)
                 State = StateBroken;
-            else if (PotentialInfo.Amps > TripAmperage)
+            else if (output.Amps > TripAmperage)
                 State = (byte)States.Tripped;
-
-            base.ComputeReaction();
+            return (States)State switch
+            {
+                States.Normal => GetInputPotential(),
+                _ => PotentialInfo.Zero
+            };
         }
 
         public enum States : byte { Normal, Tripped }

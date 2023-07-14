@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 680768411}
+  ContactType: 2
 --- !u!1 &74551534
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 74551536}
   - component: {fileID: 74551538}
   - component: {fileID: 74551537}
+  - component: {fileID: 74551539}
   m_Layer: 0
   m_Name: InputN
   m_TagString: Untagged
@@ -368,10 +369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 74551538}
-  Output: {fileID: 74551538}
-  State: 0
   Neutral: 1
   Ground: 0
   Voltage: 230
@@ -391,7 +388,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
+--- !u!114 &74551539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74551534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
+  Wires:
+  - {fileID: 74551538}
+  - {fileID: 1466783947}
+  Contacts:
+  - {fileID: 548423492}
+  Potential: {fileID: 0}
 --- !u!1 &494615039
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,8 +504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 651513355}
+  ContactType: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
+  Device: {fileID: 0}
   ContactType: 0
 --- !u!1 &651513350
 GameObject:
@@ -773,10 +788,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 1795166022}
-  Output: {fileID: 1466783947}
+  Input: {fileID: 0}
+  Output: {fileID: 0}
   State: 0
+  InputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
+  OutputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
   Voltage: 230
   Wattage: 10
   Renderer: {fileID: 0}
@@ -831,11 +859,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 945863925}
-  Output: {fileID: 1795166022}
+  Input: {fileID: 1196956341}
+  Output: {fileID: 61374462}
   State: 0
-  Type: 0
+  InputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
+  OutputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
+  SwitchType: 0
   Resting: 1
 --- !u!33 &680768412
 MeshFilter:
@@ -950,10 +991,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 1736872011}
-  Output: {fileID: 945863925}
+  Input: {fileID: 1632152312}
+  Output: {fileID: 1380792763}
   State: 0
+  InputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
+  OutputPotential:
+    Neutral: 0
+    Ground: 0
+    Volts: 0
+    Watts: 0
+    Amps: 0
+    Phi: 0
   TripAmperage: 16
   RatedAmperage: 250
 --- !u!33 &822804723
@@ -1160,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
+  Device: {fileID: 0}
   ContactType: 0
 --- !u!23 &883614349
 MeshRenderer:
@@ -1224,6 +1278,7 @@ GameObject:
   - component: {fileID: 924892023}
   - component: {fileID: 924892025}
   - component: {fileID: 924892024}
+  - component: {fileID: 924892026}
   m_Layer: 0
   m_Name: InputL1
   m_TagString: Untagged
@@ -1358,10 +1413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 924892025}
-  Output: {fileID: 924892025}
-  State: 0
   Neutral: 0
   Ground: 0
   Voltage: 230
@@ -1381,7 +1432,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
+--- !u!114 &924892026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924892021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
+  Wires:
+  - {fileID: 924892025}
+  - {fileID: 1736872011}
+  Contacts:
+  - {fileID: 883614348}
+  Potential: {fileID: 0}
 --- !u!1 &945863924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1462,7 @@ GameObject:
   - component: {fileID: 945863927}
   - component: {fileID: 945863926}
   - component: {fileID: 945863925}
+  - component: {fileID: 945863928}
   m_Layer: 0
   m_Name: Wire2
   m_TagString: Untagged
@@ -1413,7 +1483,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!120 &945863926
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1528,6 +1597,25 @@ Transform:
   m_Father: {fileID: 947556881}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &945863928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945863924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
+  Wires:
+  - {fileID: 945863925}
+  Contacts:
+  - {fileID: 1380792763}
+  - {fileID: 1196956341}
+  Potential: {fileID: 0}
 --- !u!1 &947556880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,10 +1819,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 1066947899}
-  Output: {fileID: 1066947899}
-  State: 0
   Neutral: 0
   Ground: 0
   Voltage: 230
@@ -1754,7 +1838,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!1 &1187528093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,8 +2072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 680768411}
+  ContactType: 1
 --- !u!1 &1213903020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1326421814
 Transform:
   m_ObjectHideFlags: 0
@@ -2162,8 +2245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 680768411}
+  ContactType: 2
 --- !u!1 &1380792759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,8 +2344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 822804722}
+  ContactType: 2
 --- !u!1 &1402906438
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,10 +2492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 1402906442}
-  Output: {fileID: 1402906442}
-  State: 0
   Neutral: 0
   Ground: 0
   Voltage: 230
@@ -2432,7 +2511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!1 &1466783945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,7 +2557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!120 &1466783948
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3268,8 +3345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 822804722}
+  ContactType: 1
 --- !u!1 &1633586134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,8 +3444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  ContactType: 0
+  Device: {fileID: 651513355}
+  ContactType: 1
 --- !u!1 &1736872008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,7 +3492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!120 &1736872012
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3526,6 +3602,7 @@ GameObject:
   - component: {fileID: 1795166024}
   - component: {fileID: 1795166023}
   - component: {fileID: 1795166022}
+  - component: {fileID: 1795166025}
   m_Layer: 0
   m_Name: Wire3
   m_TagString: Untagged
@@ -3546,7 +3623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
 --- !u!120 &1795166023
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3661,6 +3737,25 @@ Transform:
   m_Father: {fileID: 947556881}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+--- !u!114 &1795166025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795166021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Simulator: {fileID: 0}
+  Wires:
+  - {fileID: 1795166022}
+  Contacts:
+  - {fileID: 61374462}
+  - {fileID: 1633586138}
+  Potential: {fileID: 0}
 --- !u!1 &1929311515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,10 +3970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0
-  Input: {fileID: 1962904060}
-  Output: {fileID: 1962904060}
-  State: 0
   Neutral: 0
   Ground: 1
   Voltage: 230
@@ -3898,4 +3989,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 0}
-  TickState: 0

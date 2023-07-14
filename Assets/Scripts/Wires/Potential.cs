@@ -1,10 +1,6 @@
-﻿using System;
-using Unity.VisualScripting;
-using Wires;
-
-namespace EComp
+﻿namespace Wires
 {
-    public class Potential : EComponent
+    public class Potential : Conductive
     {
         public bool Neutral;
         public bool Ground;
@@ -15,12 +11,11 @@ namespace EComp
 
         public override Types ComponentType => Types.Source;
         public Wire Wire => gameObject.GetComponent<Wire>();
-        
-        private void Awake()
+
+        protected override void Awake()
         {
-            Input = Output = Wire;
-            if (GetComponent<WireMesh>().IsNull())
-                WireMesh = gameObject.AddComponent<WireMesh>();
+            base.Awake();
+            WireMesh = GetComponent<WireMesh>() ?? gameObject.AddComponent<WireMesh>();
         }
     }
 }

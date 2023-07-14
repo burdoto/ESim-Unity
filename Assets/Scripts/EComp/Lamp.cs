@@ -11,39 +11,34 @@ namespace EComp
 
         public override Types ComponentType => Types.Consumer;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Renderer = GetComponent<Renderer>();
         }
 
-        public override void ComputeValues()
+        private void Update()
         {
-            // can input wire handle 10W?
-            // get input wire
-            var input = Input;
-            if (input.IsNull()) goto end;
-            
-            // get input voltage
-            var volts = input!.ComputeVoltage();
-            PotentialInfo.Push(Wattage);
-            
-            end:
-            base.ComputeValues();
+            throw new NotImplementedException();
         }
 
-        protected override void ComputeReaction()
+        protected override PotentialInfo ComputeOutputPotential()
         {
-            // break lamp if U > U_max
-            if (PotentialInfo.Volts > Voltage * 1.1)
+            var input = GetInputPotential().Next();
+            var output = GetOutputPotential();
+            var local = input % output;
+                
+            if (input.Volts > Voltage * 1.05)
                 State = StateBroken;
-            
-            base.ComputeReaction();
-        }
-
-        protected override void ComputeOutput()
-        {
-            //Renderer.material = Materials.LampBroken;
-            base.ComputeOutput();
+            else if (input.Volts < Voltage * 0.95)
+                State = StateInsufficient;
+            else State = StateNormal;
+            return State switch
+            {
+                StateNormal => input.Push(Wattage),
+                StateInsufficient => input,
+                _ => PotentialInfo.Zero
+            };
         }
     }
 }

@@ -1,66 +1,78 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EComp;
 
 namespace Wires
 {
-    public class WireMesh : AEComponent, IConductive
+    public class WireMesh : Conductive
     {
-        public List<Wire> Wires;
-        public List<ContactPoint> Contacts;
+        public List<Wire> Wires = new();
+        public List<ContactPoint> Contacts = new();
         public Potential? Potential;
-        public IEnumerable<IConductive> Parts => Wires.Cast<IConductive>().Concat(Contacts);
+        public IEnumerable<Conductive> Parts => Wires.Cast<Conductive>().Concat(Contacts);
         public override Types ComponentType => Types.Conductor;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Potential = GetComponent<Potential>();
+            if (GetComponent<Wire>() is {} wire) Add(wire);
+            if (GetComponent<ContactPoint>() is {} contact) Add(contact);
         }
 
-        public override void ComputeValues()
+        public PotentialInfo FindPotential()
         {
-            if (!Potential.IsNull())
-            {
-                PotentialInfo.From(Potential!);
-            }
+            PotentialInfo output = new();
+            if (Potential != null)
+                output = Potential;
             else
                 foreach (var contact in Contacts.Where(it => it.ContactType == ContactPoint.ContactTypes.Output))
                 {
-                    PotentialInfo output = new();//contact.ComputePotential();
-                    PotentialInfo.Attach(output);
+                    var device = contact.Device;
+                    if (device != null) continue;
+                    output = device!.GetOutputPotential();
+                    output.Attach(output);
                 }
-
-            base.ComputeValues();
+            return output;
         }
 
-        public void Add(Wire wire) => Wires.Add(wire);
-        public void Add(ContactPoint contact) => Contacts.Add(contact);
+        public void Add(Wire wire)
+        {
+            if (wire != null && !Wires.Contains(wire))
+                Wires.Add(wire);
+        }
+        public void Add(ContactPoint contact)
+        {
+            if (contact != null && !Contacts.Contains(contact))
+                Contacts.Add(contact);
+        }
         public void Merge(WireMesh other)
         {
             other.Wires.ForEach(Add);
             other.Contacts.ForEach(Add);
         }
 
-        public static implicit operator WireMesh(Wire wire) => For(wire);
-        public static implicit operator WireMesh(ContactPoint contact) => For(contact);
+        public static implicit operator WireMesh?(Wire? wire) => wire.Use(Find);
+        public static implicit operator WireMesh?(ContactPoint? contact) => contact.Use(Find);
 
-        public static WireMesh For(Wire wire)
+        public static WireMesh Find(Wire wire)
         {
             var yield = wire.Simulator.GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Wires.Contains(wire));
-            if (!yield.IsNull())
-                return yield!;
+            if (yield != null)
+                return yield;
             yield = wire.Simulator.gameObject.AddComponent<WireMesh>();
             yield.Add(wire);
             return yield;
         }
-        public static WireMesh For(ContactPoint point)
+        public static WireMesh Find(ContactPoint point)
         {
             var yield = point.Simulator.GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Contacts.Contains(point));
-            if (!yield.IsNull())
-                return yield!;
+            if (yield != null)
+                return yield;
             yield = point.Simulator.gameObject.AddComponent<WireMesh>();
             yield.Add(point);
             return yield;

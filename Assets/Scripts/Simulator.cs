@@ -11,8 +11,8 @@ public class Simulator : MonoBehaviour
     public bool Playing;
     
     public GameObject Template => gameObject;
-    public IEnumerable<AEComponent> EComponents => Static.GetComponentsInChildren<AEComponent>()
-        .Concat(Template.GetComponentsInChildren<AEComponent>());
+    public IEnumerable<Conductive> EComponents => Static.GetComponentsInChildren<Conductive>()
+        .Concat(Template.GetComponentsInChildren<Conductive>());
 
     void Play()
     {
