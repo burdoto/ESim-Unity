@@ -6,6 +6,8 @@ using UnityEngine;
 
 public sealed class SimState
 {
+    public bool Neutral;
+    public bool Ground;
     public double Volts;
     public double Watts;
     public double Amps;
@@ -13,6 +15,8 @@ public sealed class SimState
 
     public void From(Potential potential)
     {
+        Neutral = potential.Neutral;
+        Ground = potential.Ground;
         Volts = potential.Voltage;
         Phi = potential.PhaseShiftAngle;
     }
