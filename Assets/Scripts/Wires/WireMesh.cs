@@ -15,9 +15,9 @@ namespace Wires
         public IEnumerable<Conductive> Parts => Wires.Cast<Conductive>().Concat(Contacts);
         public override Types ComponentType => Types.Conductor;
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             Potential = GetComponent<Potential>();
             if (GetComponent<Wire>() is {} wire) Add(wire);
             if (GetComponent<Contact>() is {} contact) Add(contact);

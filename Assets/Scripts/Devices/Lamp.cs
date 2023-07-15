@@ -10,9 +10,9 @@ namespace Devices
 
         public override Types ComponentType => Types.Consumer;
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             Renderer = GetComponent<Renderer>();
         }
 

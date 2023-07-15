@@ -9,9 +9,9 @@ namespace Wires
         public Types type;
         public override Conductive.Types ComponentType => Conductive.Types.Conductor;
 
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             if (Device != null) 
                 Device = transform.parent.GetComponent<EComponent>();
         }

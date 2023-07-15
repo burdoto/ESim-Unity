@@ -74,7 +74,7 @@ public abstract class Conductive : MonoBehaviour
 
     public abstract Types ComponentType { get; }
 
-    protected virtual void Awake() => Simulator = GetComponentInParent<Simulator>(true);
+    protected virtual void OnEnable() => Simulator = GetComponentInParent<Simulator>(true);
 
     public enum Types { Conductor, Switch, Consumer, Source }
 }
