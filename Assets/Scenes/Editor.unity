@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulator: {fileID: 0}
   Static: 1
   Wires:
   - {fileID: 74551538}
@@ -580,7 +579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulator: {fileID: 0}
   Static: 1
   Wires:
   - {fileID: 924892025}
@@ -600,7 +598,7 @@ GameObject:
   - component: {fileID: 947556881}
   - component: {fileID: 947556882}
   m_Layer: 0
-  m_Name: Template
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,7 +611,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947556880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -643,8 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a4aeb9cabb63b4899c1ab220fb6b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 1541963538}
-  Static: {fileID: 1213903020}
   Playing: 0
 --- !u!1 &1187528093
 GameObject:
@@ -783,11 +779,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187528093}
   m_CullTransparentMesh: 1
---- !u!1 &1213903020 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7024369411171889520, guid: 6e882f96172a1bd4f8b5c5dc26e10c6c, type: 3}
-  m_PrefabInstance: {fileID: 7024369410238284252}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1213903021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7024369411171889521, guid: 6e882f96172a1bd4f8b5c5dc26e10c6c, type: 3}
@@ -1148,7 +1139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulator: {fileID: 0}
   Static: 0
   Wires:
   - {fileID: 1539628283}
@@ -1793,7 +1783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b237e56b77a441bad9d116e593a9c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulator: {fileID: 0}
   Static: 0
   Wires:
   - {fileID: 2045838237}
@@ -1924,6 +1913,10 @@ PrefabInstance:
     - target: {fileID: 1407136873861433400, guid: 2994429e47a32df469de2068f6a2eb1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407136873861433401, guid: 2994429e47a32df469de2068f6a2eb1d, type: 3}
+      propertyPath: State
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1407136873861433403, guid: 2994429e47a32df469de2068f6a2eb1d, type: 3}
       propertyPath: m_Name

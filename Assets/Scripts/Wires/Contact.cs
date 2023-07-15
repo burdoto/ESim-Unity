@@ -7,7 +7,7 @@ namespace Wires
         public Types Type;
         public override Conductive.Types ComponentType => Conductive.Types.Conductor;
 
-        protected void OnEnable()
+        protected void Start()
         {
             if (Device == null && Type is Types.Input or Types.Output)
                 Device = transform.parent.GetComponent<EComponent>();

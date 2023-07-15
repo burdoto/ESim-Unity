@@ -12,7 +12,7 @@
         public override Types ComponentType => Types.Source;
         public Wire Wire => gameObject.GetComponent<Wire>();
 
-        protected void OnEnable()
+        protected void Start()
         {
             WireMesh = GetComponent<WireMesh>() ?? Wire;
             WireMesh.Static = true;

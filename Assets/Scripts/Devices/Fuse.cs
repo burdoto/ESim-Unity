@@ -1,4 +1,6 @@
-﻿namespace Devices
+﻿using System;
+
+namespace Devices
 {
     public class Fuse : EComponent
     {
@@ -22,6 +24,16 @@
                 States.Normal => GetInputPotential(),
                 _ => PotentialInfo.Zero
             };
+        }
+
+        private void LateUpdate()
+        {
+            var output = GetOutputPotential();
+            if (output.Amps > RatedAmperage)
+                State = StateBroken;
+            else if (output.Amps > TripAmperage)
+                State = (byte)States.Tripped;
+            else State = (byte)States.Normal;
         }
 
         public enum States : byte { Normal, Tripped }

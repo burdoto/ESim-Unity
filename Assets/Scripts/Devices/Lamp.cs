@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Wires;
 
 namespace Devices
 {
@@ -11,20 +12,20 @@ namespace Devices
 
         protected override PotentialInfo ComputeOutputPotential()
         {
-            var input = GetInputPotential().Next();
+            var input = GetInputPotential();//.Next();
             
-            /* TODO: state handling needs to be somewhere else
-            var voltage = input % GetOutputPotential();
+            var voltage = input % ((WireMesh)Output)!.FindPotential();
             if (voltage > Voltage * 1.05)
                 State = StateBroken;
+            else if (voltage < 0.001)
+                State = StateNormal;
             else if (voltage < Voltage * 0.95)
                 State = StateInsufficient;
-            else State = StateNormal;
-            */
+            else State = StateActive;
             
             return State switch
             {
-                StateNormal => input.Push(Wattage),
+                StateActive => input.Push(Wattage),
                 StateInsufficient => input,
                 _ => PotentialInfo.Zero
             };

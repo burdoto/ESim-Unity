@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Wires
@@ -15,7 +16,7 @@ namespace Wires
         public IEnumerable<Conductive> Parts => Wires.Cast<Conductive>().Concat(Contacts);
         public override Types ComponentType => Types.Conductor;
 
-        protected void OnEnable()
+        protected void Start()
         {
             Potential = GetComponent<Potential>();
             if (GetComponent<Wire>() is {} wire) Add(wire);
@@ -24,18 +25,18 @@ namespace Wires
 
         public PotentialInfo FindPotential()
         {
-            PotentialInfo output = new();
-            if (Potential != null)
-                output = Potential;
-            else
-                foreach (var contact in Contacts.Where(it => it.Type == Contact.Types.Output))
-                {
-                    var device = contact.Device;
-                    if (device != null) continue;
+            if (!Potential.IsUnityNull())
+                return Potential!;
+            PotentialInfo? output = null;
+            foreach (var contact in Contacts.Where(it => it.Type == Contact.Types.Output))
+            {
+                var device = contact.Device;
+                if (device.IsUnityNull()) continue;
+                if (output == null)
                     output = device!.GetOutputPotential();
-                    output.Attach(output);
-                }
-            return output;
+                else output.Attach(output);
+            }
+            return output ?? new();//?.Next() ?? new();
         }
 
         public void Add(Wire wire)
@@ -63,7 +64,8 @@ namespace Wires
 
         public static WireMesh Find(Wire wire)
         {
-            var yield = Simulator.Instance.GetComponentsInChildren<WireMesh>()
+            var yield = wire.GetComponentInParent<Simulator>()
+                .GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Wires.Contains(wire));
             if (yield != null)
                 return yield;
@@ -73,7 +75,8 @@ namespace Wires
         }
         public static WireMesh Find(Contact point)
         {
-            var yield = Simulator.Instance.GetComponentsInChildren<WireMesh>()
+            var yield = point.GetComponentInParent<Simulator>()
+                .GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Contacts.Contains(point));
             if (yield != null)
                 return yield;

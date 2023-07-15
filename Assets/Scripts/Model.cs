@@ -1,5 +1,7 @@
 ﻿#nullable enable
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,7 +20,16 @@ public sealed class PotentialInfo
     public double PhaseShiftAngle;
     public bool IsZero => !Neutral && !Ground && Volts == 0 && Watts == 0 && Amps == 0 && PhaseShiftAngle == 0;
 
-    public PotentialInfo Next() => new() { Parent = this };
+    public PotentialInfo Next() => new()
+    {
+        Parent = this,
+        Neutral = Neutral,
+        Ground = Ground,
+        Volts = Volts,
+        Watts = Watts,
+        Amps = Amps,
+        PhaseShiftAngle = PhaseShiftAngle
+    };
 
     public static implicit operator PotentialInfo(Potential potential) => new()
     {
@@ -45,7 +56,8 @@ public sealed class PotentialInfo
     public PotentialInfo Push(double watts)
     {
         // I = P / U
-        Amps = (Watts = watts) / Volts;
+        Amps += (Watts += watts) / Volts;
+        Parent?.Push(watts);
         return this;
     }
 
@@ -53,7 +65,9 @@ public sealed class PotentialInfo
     {
         Neutral = other.Neutral;
         Ground = other.Ground;
-        if (IsZero)
+        if (Volts == other.Volts && PhaseShiftAngle == other.PhaseShiftAngle)
+            return this;
+        else if (IsZero)
         {
             Volts = other.Volts;
             Watts = other.Watts;
@@ -61,13 +75,14 @@ public sealed class PotentialInfo
             PhaseShiftAngle = other.PhaseShiftAngle;
             return this;
         }
-        throw new NotImplementedException();
+        else throw new NotImplementedException();
     }
 }
 
 public abstract class Conductive : MonoBehaviour
 {
     public const byte StateNormal = 0x00;
+    public const byte StateActive = 0x01;
     public const byte StateInsufficient = 0xFE;
     public const byte StateBroken = 0xFF;
 
@@ -84,15 +99,39 @@ public abstract class EComponent : Conductive
     public PotentialInfo? InputPotential;
     public PotentialInfo? OutputPotential;
     public Renderer Renderer = null!;
+    private byte PrevState;
 
-    protected void OnEnable()
+    private void Start() => Renderer = GetComponent<Renderer>();
+    private void FixedUpdate()
     {
-        Renderer = GetComponent<Renderer>();
+        InputPotential = OutputPotential = null;
     }
-    private void Update() => OutputPotential = GetOutputPotential();
-    protected virtual void LateUpdate() => InputPotential = OutputPotential = null;
+    private void Update()
+    {
+        if (ComponentType == Types.Switch && (InputPotential?.IsZero ?? true))
+            GetInputPotential();
+        if (ComponentType == Types.Consumer)
+            GetOutputPotential();
+    }
+    private void LateUpdate()
+    {
+        if (PrevState != State)
+            Renderer.material = GetStateMaterial();
+        PrevState = State;
+    }
 
     public PotentialInfo GetInputPotential() => InputPotential ??= ((WireMesh?)Input)?.FindPotential() ?? PotentialInfo.Zero;
     public PotentialInfo GetOutputPotential() => OutputPotential ??= ComputeOutputPotential();
+    
     protected abstract PotentialInfo ComputeOutputPotential();
+    protected virtual Material GetStateMaterial()
+    {
+        return State switch
+        {
+            StateActive => Resources.Load<Material>("Materials/Device/StateActive"),
+            StateInsufficient => Resources.Load<Material>("Materials/Device/StateInsufficient"),
+            StateBroken => Resources.Load<Material>("Materials/Device/StateBroken"),
+            _ => Resources.Load<Material>("Materials/Device/StateNormal")
+        };
+    }
 }
