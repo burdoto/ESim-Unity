@@ -1,11 +1,9 @@
 ﻿#nullable enable
 using System;
-using EComp;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Wires;
-using ContactPoint = Wires.ContactPoint;
 
 [Serializable]
 public sealed class PotentialInfo
@@ -17,7 +15,6 @@ public sealed class PotentialInfo
     public double Volts;
     public double Watts;
     public double Amps;
-    [FormerlySerializedAs("PhaseShift")] [FormerlySerializedAs("Phi")]
     public double PhaseShiftAngle;
     public bool IsZero => !Neutral && !Ground && Volts == 0 && Watts == 0 && Amps == 0 && PhaseShiftAngle == 0;
 
@@ -33,7 +30,16 @@ public sealed class PotentialInfo
     
     public static double operator %(PotentialInfo input, PotentialInfo output)
     {
-        throw new NotImplementedException();
+        double? CheckCOM(Func<PotentialInfo,bool> flag) => (flag(input), flag(output)) switch
+        {
+            (false,true) => input.Volts,
+            (true,false) => output.Volts,
+            (true,true) => 0,
+            _ => null
+        };
+        return CheckCOM(x=>x.Neutral)
+               ?? CheckCOM(x=>x.Ground) 
+               ?? input.Volts * Math.Sqrt(3 * (Math.Abs(output.PhaseShiftAngle - input.PhaseShiftAngle) / 120));
     }
 
     public PotentialInfo Push(double watts)
@@ -75,12 +81,13 @@ public abstract class Conductive : MonoBehaviour
 
 public abstract class EComponent : Conductive
 {
-    public ContactPoint? Input;
-    public ContactPoint? Output;
+    public Contact? Input;
+    public Contact? Output;
     public byte State;
     public PotentialInfo? InputPotential;
     public PotentialInfo? OutputPotential;
-    
+
+    private void Update() => OutputPotential = GetOutputPotential();
     protected virtual void LateUpdate() => InputPotential = OutputPotential = null;
 
     public PotentialInfo GetInputPotential() => InputPotential ??= ((WireMesh?)Input)?.FindPotential() ?? PotentialInfo.Zero;

@@ -1,11 +1,13 @@
 #nullable enable
+using UnityEngine.Serialization;
+
 namespace Wires
 {
-    public class ContactPoint : Conductive
+    public class Contact : Conductive
     {
         public EComponent? Device;
-        public ContactTypes ContactType;
-        public override Types ComponentType => Types.Conductor;
+        public Types type;
+        public override Conductive.Types ComponentType => Conductive.Types.Conductor;
 
         protected override void Awake()
         {
@@ -14,6 +16,6 @@ namespace Wires
                 Device = transform.parent.GetComponent<EComponent>();
         }
     
-        public enum ContactTypes { Joint = default, Input, Output }
+        public new enum Types { Joint = default, Input, Output }
     }
 }

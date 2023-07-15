@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine.Serialization;
 
-namespace EComp
+namespace Devices
 {
     public class Switch : EComponent
     {

@@ -15,7 +15,8 @@
         protected override void Awake()
         {
             base.Awake();
-            WireMesh = GetComponent<WireMesh>() ?? gameObject.AddComponent<WireMesh>();
+            WireMesh = GetComponent<WireMesh>() ?? Wire;
+            WireMesh.Static = true;
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EComp
+namespace Devices
 {
     public class Lamp : EComponent
     {
@@ -17,22 +16,19 @@ namespace EComp
             Renderer = GetComponent<Renderer>();
         }
 
-        private void Update()
-        {
-            throw new NotImplementedException();
-        }
-
         protected override PotentialInfo ComputeOutputPotential()
         {
             var input = GetInputPotential().Next();
-            var output = GetOutputPotential();
-            var local = input % output;
-                
-            if (input.Volts > Voltage * 1.05)
+            
+            /* TODO: state handling needs to be somewhere else
+            var voltage = input % GetOutputPotential();
+            if (voltage > Voltage * 1.05)
                 State = StateBroken;
-            else if (input.Volts < Voltage * 0.95)
+            else if (voltage < Voltage * 0.95)
                 State = StateInsufficient;
             else State = StateNormal;
+            */
+            
             return State switch
             {
                 StateNormal => input.Push(Wattage),
