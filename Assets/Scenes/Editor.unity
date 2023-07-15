@@ -250,7 +250,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 19873549622416062, guid: 47f73cb73fee00444b128fe00c468b26, type: 3}
       propertyPath: m_Name
-      value: Wire
+      value: Wire4
       objectReference: {fileID: 0}
     - target: {fileID: 19873549622416063, guid: 47f73cb73fee00444b128fe00c468b26, type: 3}
       propertyPath: m_RootOrder
