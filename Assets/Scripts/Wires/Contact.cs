@@ -1,21 +1,18 @@
 #nullable enable
-using UnityEngine.Serialization;
-
 namespace Wires
 {
     public class Contact : Conductive
     {
         public EComponent? Device;
-        public Types type;
+        public Types Type;
         public override Conductive.Types ComponentType => Conductive.Types.Conductor;
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
-            base.OnEnable();
-            if (Device != null) 
+            if (Device == null && Type is Types.Input or Types.Output)
                 Device = transform.parent.GetComponent<EComponent>();
         }
-    
+
         public new enum Types { Joint = default, Input, Output }
     }
 }

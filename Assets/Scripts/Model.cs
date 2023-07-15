@@ -74,7 +74,7 @@ public abstract class Conductive : MonoBehaviour
 
     public abstract Types ComponentType { get; }
 
-    protected virtual void OnEnable() => Simulator = GetComponentInParent<Simulator>(true);
+    protected virtual void Awake() => Simulator = GetComponentInParent<Simulator>(true);
 
     public enum Types { Conductor, Switch, Consumer, Source }
 }
@@ -86,7 +86,13 @@ public abstract class EComponent : Conductive
     public byte State;
     public PotentialInfo? InputPotential;
     public PotentialInfo? OutputPotential;
+    public Renderer Renderer = null!;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Renderer = GetComponent<Renderer>();
+    }
     private void Update() => OutputPotential = GetOutputPotential();
     protected virtual void LateUpdate() => InputPotential = OutputPotential = null;
 

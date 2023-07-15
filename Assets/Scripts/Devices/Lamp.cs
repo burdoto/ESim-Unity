@@ -6,15 +6,8 @@ namespace Devices
     {
         public double Voltage = 230;
         public double Wattage = 10;
-        public Renderer Renderer;
 
         public override Types ComponentType => Types.Consumer;
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            Renderer = GetComponent<Renderer>();
-        }
 
         protected override PotentialInfo ComputeOutputPotential()
         {

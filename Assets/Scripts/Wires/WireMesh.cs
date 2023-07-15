@@ -15,9 +15,8 @@ namespace Wires
         public IEnumerable<Conductive> Parts => Wires.Cast<Conductive>().Concat(Contacts);
         public override Types ComponentType => Types.Conductor;
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             Potential = GetComponent<Potential>();
             if (GetComponent<Wire>() is {} wire) Add(wire);
             if (GetComponent<Contact>() is {} contact) Add(contact);
@@ -29,7 +28,7 @@ namespace Wires
             if (Potential != null)
                 output = Potential;
             else
-                foreach (var contact in Contacts.Where(it => it.type == Contact.Types.Output))
+                foreach (var contact in Contacts.Where(it => it.Type == Contact.Types.Output))
                 {
                     var device = contact.Device;
                     if (device != null) continue;

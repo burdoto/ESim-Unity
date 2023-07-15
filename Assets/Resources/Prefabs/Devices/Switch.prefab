@@ -201,6 +201,10 @@ PrefabInstance:
       value: Contact2
       objectReference: {fileID: 0}
     - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
+      propertyPath: Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
@@ -292,6 +296,10 @@ PrefabInstance:
     - target: {fileID: 6083597759510006209, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
       propertyPath: m_Name
       value: Contact1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
+      propertyPath: Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
       propertyPath: type
@@ -389,6 +397,10 @@ PrefabInstance:
     - target: {fileID: 6083597759510006209, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
+      propertyPath: Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6083597759510006215, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
       propertyPath: type
