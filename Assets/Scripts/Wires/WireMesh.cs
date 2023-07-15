@@ -63,7 +63,7 @@ namespace Wires
 
         public static WireMesh Find(Wire wire)
         {
-            var yield = wire.Simulator.GetComponentsInChildren<WireMesh>()
+            var yield = Simulator.Instance.GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Wires.Contains(wire));
             if (yield != null)
                 return yield;
@@ -73,7 +73,7 @@ namespace Wires
         }
         public static WireMesh Find(Contact point)
         {
-            var yield = point.Simulator.GetComponentsInChildren<WireMesh>()
+            var yield = Simulator.Instance.GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Contacts.Contains(point));
             if (yield != null)
                 return yield;
