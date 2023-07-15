@@ -23,12 +23,10 @@ public sealed class PotentialInfo
     public PotentialInfo Next() => new()
     {
         Parent = this,
-        Neutral = Neutral,
-        Ground = Ground,
-        Volts = Volts,
-        Watts = Watts,
-        Amps = Amps,
-        PhaseShiftAngle = PhaseShiftAngle
+        Neutral = this.Neutral,
+        Ground = this.Ground,
+        Volts = this.Volts,
+        PhaseShiftAngle = this.PhaseShiftAngle
     };
 
     public static implicit operator PotentialInfo(Potential potential) => new()
@@ -56,7 +54,8 @@ public sealed class PotentialInfo
     public PotentialInfo Push(double watts)
     {
         // I = P / U
-        Amps += (Watts += watts) / Volts;
+        Watts += watts;
+        Amps += watts / Volts;
         Parent?.Push(watts);
         return this;
     }
@@ -120,7 +119,7 @@ public abstract class EComponent : Conductive
         PrevState = State;
     }
 
-    public PotentialInfo GetInputPotential() => InputPotential ??= ((WireMesh?)Input)?.FindPotential() ?? PotentialInfo.Zero;
+    public PotentialInfo GetInputPotential() => InputPotential ??= (((WireMesh?)Input)?.FindPotential() ?? PotentialInfo.Zero).Next();
     public PotentialInfo GetOutputPotential() => OutputPotential ??= ComputeOutputPotential();
     
     protected abstract PotentialInfo ComputeOutputPotential();
