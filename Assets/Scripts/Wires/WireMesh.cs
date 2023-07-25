@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -51,19 +52,34 @@ namespace Wires
         }
         public WireMesh Merge(WireMesh other)
         {
+            if (this == other)
+                return this;
             if (other.Static)
                 return other.Merge(this);
             other.Wires.ForEach(Add);
             other.Contacts.ForEach(Add);
-            Destroy(other);
+            Destroy(other.gameObject);
             return this;
         }
 
-        public static implicit operator WireMesh?(Wire? wire) => wire.Use(Find);
-        public static implicit operator WireMesh?(Contact? contact) => contact.Use(Find);
+        [ContractAnnotation("null => null")]
+        public static implicit operator WireMesh(Wire? wire) => wire.Use(Find)!;
+        [ContractAnnotation("null => null")]
+        public static implicit operator WireMesh(Contact? contact) => contact.Use(Find)!;
 
+        [ContractAnnotation("null => null")]
+        public static WireMesh Find(Conductive it) => it switch
+        {
+            Wire w => w,
+            Contact c => c,
+            null => null!,
+            _ => throw new ArgumentOutOfRangeException(nameof(it), it.GetType(), "Invalid type for WireMesh")
+        };
+        [ContractAnnotation("null => null")]
         public static WireMesh Find(Wire wire)
         {
+            if (wire.IsUnityNull())
+                return null!;
             var yield = wire.GetComponentInParent<Simulator>()
                 .GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Wires.Contains(wire));
@@ -73,8 +89,11 @@ namespace Wires
             yield.Add(wire);
             return yield;
         }
+        [ContractAnnotation("null => null")]
         public static WireMesh Find(Contact point)
         {
+            if (point.IsUnityNull())
+                return null!;
             var yield = point.GetComponentInParent<Simulator>()
                 .GetComponentsInChildren<WireMesh>()
                 .FirstOrDefault(mesh => mesh.Contacts.Contains(point));

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7495759187204204199}
   - component: {fileID: 7495759187204204196}
   - component: {fileID: 7495759187204204198}
+  - component: {fileID: 5449782644411151245}
   m_Layer: 0
   m_Name: Lamp
   m_TagString: Untagged
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b2ddc92fc44bea31bb7a0701461f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Simulator: {fileID: 0}
   Input: {fileID: 4353589589750711957}
   Output: {fileID: 4353589589045101236}
   State: 0
@@ -116,14 +116,36 @@ MonoBehaviour:
     Watts: 0
     Amps: 0
     PhaseShiftAngle: 0
+  Renderer: {fileID: 0}
   Voltage: 230
   Wattage: 10
-  Renderer: {fileID: 0}
+--- !u!65 &5449782644411151245
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7495759187204204203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7495759186935647091
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7495759187204204202}
     m_Modifications:
     - target: {fileID: 6083597759510006208, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
@@ -199,6 +221,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7495759187204204198}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
 --- !u!4 &4353589589045101235 stripped
 Transform:
@@ -221,6 +246,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7495759187204204202}
     m_Modifications:
     - target: {fileID: 6083597759510006208, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
@@ -296,6 +322,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7495759187204204198}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8775e44594b1674489ccfcd26f9e4b47, type: 3}
 --- !u!4 &4353589589750711954 stripped
 Transform:
